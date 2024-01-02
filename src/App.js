@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Header from "./components/Header";
+import BasicInfo from "./ui/BasicInfo";
+import AddressInfo from "./ui/AddressInfo";
+import { Route, Routes } from "react-router-dom";
+import Home from "./ui/Home";
+import UserDataForm from "./ui/UserDataForm";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <h1>Hoc Project</h1>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        {/* <Route path="/adduser" element={<UserDataForm />} />
+        <Route path="/edituser/:id" element={<UserDataForm />} /> */}
+        <Route path="/addinfo" element={<BasicInfo />} />
+        <Route path="/addressinfo/add/:fullName/:email/:phone" element={<AddressInfo />} />
+        {/* <Route path="/addressinfo/add" element={<AddressInfo />} /> */}
+        <Route path="/editinfo/:id" element={<BasicInfo />} />
+        <Route path="/addressinfo/update/:id/:fullName/:email/:phone" element={<AddressInfo />} />
+      </Routes>
     </div>
   );
 }

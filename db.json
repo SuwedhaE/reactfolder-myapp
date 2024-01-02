@@ -1,0 +1,58 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "swetha E",
+      "email": "swe@gmail.com",
+      "phone": "9897964531",
+      "city": "villupuram",
+      "state": "tamil nadu",
+      "country": "India"
+    },
+    {
+      "id": 2,
+      "fullName": "swetha E",
+      "email": "swe@gmail.com",
+      "phone": "9897964531",
+      "city": "villupuram",
+      "state": "tamil nadu",
+      "country": "India"
+    },
+    {
+      "id": 3,
+      "fullName": "swetha E",
+      "email": "swe@gmail.com",
+      "phone": "9897964531",
+      "city": "villupuram",
+      "state": "tamil nadu",
+      "country": "India"
+    },
+    {
+      "fullName": "gayathri saravanan",
+      "email": "gayu@gmail.com",
+      "phone": "234567",
+      "city": "Villupuram",
+      "state": "TamilNadu",
+      "country": "India",
+      "id": 4
+    },
+    {
+      "city": "villupuram",
+      "state": "tamilnadu",
+      "country": "India",
+      "fullName": "Swetha sharmi",
+      "email": "swe@gmail.com",
+      "phone": "01234567890",
+      "id": 5
+    },
+    {
+      "fullName": "parani",
+      "email": "parani@gmail.com",
+      "phone": "09807654231",
+      "city": "gh",
+      "state": "gh",
+      "country": "gh",
+      "id": 6
+    }
+  ]
+}
