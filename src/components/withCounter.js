@@ -25,25 +25,3 @@ const withCounter = (WrappedComponent) => {
 
 export default withCounter;
 
-
-// const withCounter = (WrappedComponent) => {
-//   const WithCounter = ({ storeFormData }) => {
-//     const handleSubmit = (formData) => {
-//       storeFormData(formData);
-//     };
-
-//     return (
-//       <WrappedComponent
-//         onSubmit={handleSubmit}
-//       />
-//     );
-//   };
-
-//   const mapDispatchToProps = {
-//     storeFormData,
-//   };
-
-//   return connect(null, mapDispatchToProps)(WithCounter);
-// };
-
-// export default withCounter;

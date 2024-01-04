@@ -1,10 +1,16 @@
 import React, { useEffect } from "react";
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { deleteUserStart, loadUsersStart, updateUserStart } from "../redux/action";
 import { Link } from "react-router-dom";
 
-const Home = ({ users }) => {
+const Home = () => {
   const dispatch = useDispatch();
+  const users = useSelector((state) => state.data.users);
+
+  useEffect(() => {
+    // This effect runs whenever `users` changes
+    console.log('Home component re-rendered with users:', users);
+  }, [users]);
 
   useEffect(() => {
     try {
@@ -13,7 +19,7 @@ const Home = ({ users }) => {
       console.error("Error fetching users:", error);
       // Handle the error, e.g., display an error message
     }
-  }, [dispatch, users]);
+  }, [dispatch]);
 
   const handleDelete = (id) => {
     if (window.confirm("Do you want to delete this user?")) {
@@ -21,7 +27,7 @@ const Home = ({ users }) => {
       alert("User deleted successfully");
     }
   };
-
+  console.log('Users prop:', users);
   return (
     <div className="container">
       <h3 className="text-center mt-3">List of Users</h3>
@@ -72,6 +78,8 @@ const Home = ({ users }) => {
     </div>
   );
 };
+
+console.log("Home component re-rendered"); // Verifying rendering
 
 const mapStateToProps = (state) => ({
   users: state.data.users || [], // Assuming combined user data is in 'formValues'

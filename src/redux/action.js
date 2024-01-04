@@ -57,23 +57,10 @@ export const deleteUserError = (error) => ({
 });
 
 // Update address
-export const updateAddressStart = (address) => ({
-  type: types.UPDATE_ADDRESS_START,
-  payload: address,
-});
 
-// export const updateUserStart = (updatedUserData) => {
-//   console.log('Dispatching updateuserstart action with payload:', updatedUserData);
-//   return {
-//     type: 'UPDATE_USER_START',
-//     payload: updatedUserData,
-//   };
-// };
-
-
-export const updateUserStart = (data) => ({
-  type: types.UPDATE_USER_START,
-  payload: data,
+export const updateUserStart = (id, editedUser) => ({
+  type: 'UPDATE_USER_START',
+  payload: { id, editedUser },
 });
 
 export const updateUserSuccess = (userID) => ({

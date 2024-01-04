@@ -5,7 +5,7 @@ import BasicInfo from "./ui/BasicInfo";
 import AddressInfo from "./ui/AddressInfo";
 import { Route, Routes } from "react-router-dom";
 import Home from "./ui/Home";
-import UserDataForm from "./ui/UserDataForm";
+import EditInfo from "./ui/EditInfo";
 
 function App() {
   return (
@@ -19,8 +19,7 @@ function App() {
         <Route path="/addinfo" element={<BasicInfo />} />
         <Route path="/addressinfo/add/:fullName/:email/:phone" element={<AddressInfo />} />
         {/* <Route path="/addressinfo/add" element={<AddressInfo />} /> */}
-        <Route path="/editinfo/:id" element={<BasicInfo />} />
-        <Route path="/addressinfo/update/:id/:fullName/:email/:phone" element={<AddressInfo />} />
+        <Route path="/editinfo/:id" element={<EditInfo />} />
       </Routes>
     </div>
   );

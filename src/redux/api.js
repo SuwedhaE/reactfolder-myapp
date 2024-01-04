@@ -9,5 +9,5 @@ export const createUserApi = async(user) =>
 export const deleteUserApi = async(userId) =>
     await  axios.delete(`http://localhost:5001/users/${userId}`);
 
-export const updateUserApi = async(userId, userInfo) =>
-    await  axios.put(`http://localhost:5001/users/${userId}`, userInfo);
+export const updateUserApi = async(userId, editedUser) =>
+    await  axios.put(`http://localhost:5001/users/${userId}`, editedUser);

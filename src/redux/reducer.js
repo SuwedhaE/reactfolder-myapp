@@ -54,20 +54,41 @@ const userReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
+    // case types.UPDATE_USER_START: {
+    //   console.log("Before update:", state.users);
+
+    //   const updatedUsers = state.users.map((user) => {
+    //     if (user.id === action.payload.id) {
+    //       return { ...user, ...action.payload };
+    //     } else {
+    //       return user;
+    //     }
+    //   });
+
+    //   return {
+    //     ...state,
+    //     users: updatedUsers,
+    //   };
+    // }
+
     case types.UPDATE_USER_START:
       return {
         ...state,
-        loading: true,
+      //   users: state.users.map((user) =>
+      //     user.id === action.payload.id ? { ...user, ...action.payload } : user
+      //   ),
       };
-    case types.UPDATE_USER_SUCCESS:
-      console.log('Reducer: Updating user with payload:', action.payload);
-      return {
-        ...state,
-        loading: false,
-        users: state.users.map((user) =>
-          user.id === action.payload.id ? action.payload : user
-        ),
-      };
+
+    // Inside your reducer
+
+case types.UPDATE_USER_SUCCESS:
+  return {
+    ...state,
+    users: state.users.map((user) =>
+      user.id === action.payload.id ? { ...user, ...action.payload.userInfo } : user
+    ),
+  };
+
     case types.UPDATE_USER_ERROR:
       return {
         ...state,

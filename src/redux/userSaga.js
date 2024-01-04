@@ -51,23 +51,26 @@ function* onDeleteUserStartAsync(userId){
     }
 }
 
-function* onUpdateUserStartAsync({payload}) {
-    try{
-        console.log('Saga: Handling updateUserStartAsync with payload:', payload);
-        if(payload && payload.id) {
-            const { id, formValue } = payload;
-            const response = yield call(updateUserApi, id, formValue);
-            if(response.status === 200){
-                yield put(updateUserSuccess());
-            }
-        } else {
-            // Handle the case where payload or payload.id is undefined
-            // You can log an error or dispatch an action to handle this scenario
-        }
+function* onUpdateUserStartAsync(action) {
+    try {
+      const { id, editedUser } = action.payload;
+      yield call(updateUserApi, id, editedUser);
+      yield put({ type: 'UPDATE_USER_SUCCESS', payload: { editedUser } });
     } catch (error) {
-        yield put(updateUserError(error.response.data));
+      console.error("Error in onUpdateUserStartAsync:", error);
+      yield put(updateUserError("Failed to update user"));
     }
-}
+  }
+  
+
+//   function* onUpdateUserSuccess(action) {
+//     try {
+//     //   const response = yield call(updateUserApi, action.payload.userId, action.payload.userInfo);
+//       yield put(updateUserSuccess(action.payload.userInfo));
+//     } catch (error) {
+//       // Handle errors
+//     }
+//   }
 
 
 function* onDeleteUser(){
@@ -97,10 +100,6 @@ function* onUpdateUser() {
     yield takeLatest(types.UPDATE_USER_START, onUpdateUserStartAsync);
 }
 
-function* onUpdateAddress() {
-    yield takeLatest(types.UPDATE_ADDRESS_START, onUpdateUserStartAsync);
-}
-
 function* onSubmitBasicInfo(action) {
     try {
       const { basicInfo } = action.payload || {};
@@ -112,12 +111,15 @@ function* onSubmitBasicInfo(action) {
   
   function* onSubmitAddressInfo(action) {
     try {
-      const { addressInfo } = action.payload || {};
-      console.log("onSubmitAddressInfo: ", addressInfo); // Log for visibility
+        const { addressInfo } = action.payload || {};
+        console.log("onSubmitAddressInfo: ", addressInfo);
+        // yield put({ type: types.UPDATE_USER_START, payload: { id: userId, formValue: addressInfo } });
     } catch (error) {
       // Implement error handling here
+      yield put(updateUserError("Failed to update address")); // Example error action
     }
   }
+  
 
   function* onSubmitCombinedForm(action) {
     try {
@@ -155,7 +157,7 @@ function* watchFormSubmissions() {
     yield takeLatest(types.SUBMIT_COMBINED_FORM, onSubmitCombinedForm);
 }
 
-const userSagas = [fork(onLoadUsers), fork(onCreateUser), fork(onCreateAddress), fork(onDeleteUser), fork(onUpdateUser), fork(onUpdateAddress), fork(onSubmitBasicInfo), fork(submitAddressInfo), fork(watchFormSubmissions)];
+const userSagas = [fork(onLoadUsers), fork(onCreateUser), fork(onCreateAddress), fork(onDeleteUser), fork(onUpdateUser), fork(onSubmitBasicInfo), fork(submitAddressInfo), fork(watchFormSubmissions)];
 
 export default function *rootSaga(){
     yield all([...userSagas ]);
