@@ -2,66 +2,48 @@
   "users": [
     {
       "id": 1,
-      "fullName": "swetha E",
-      "email": "swe@gmail.com",
+      "fullName": "Salini",
+      "email": "salini@gmail.com",
       "phone": "9897964531",
-      "city": "villupuram",
-      "state": "tamil nadu",
+      "city": "Krishnagiri",
+      "state": "Tamil nadu",
       "country": "India"
     },
     {
-      "fullName": "gayathri saravanan",
+      "fullName": "Gayathri",
       "email": "gayu@gmail.com",
-      "phone": "234567",
-      "city": "Villupuram",
+      "phone": "9817064531",
+      "city": "Thirutani",
       "state": "TamilNadu",
       "country": "India",
       "id": 2
     },
     {
-      "city": "villupuram",
-      "state": "tamilnadu",
-      "country": "India",
-      "fullName": "Swetha sharmi",
+      "fullName": "Swetha",
       "email": "swe@gmail.com",
-      "phone": "01234567890",
+      "phone": "9827914530",
+      "city": "Villupuram",
+      "state": "Tamilnadu",
+      "country": "India",
       "id": 3
     },
     {
       "fullName": "Mohan",
       "email": "mohan@gmail.com",
-      "phone": "01234567890",
+      "phone": "8897364531",
       "city": "Thiruthani",
       "state": "TamilNadu",
       "country": "India",
       "id": 4
     },
     {
-      "fullName": "charukh",
+      "fullName": "Charukh",
       "email": "charu@gmail.com",
-      "phone": "09894568702",
+      "phone": "7897564531",
       "city": "Villupuram",
       "state": "TamilNadu",
       "country": "India",
       "id": 5
-    },
-    {
-      "fullName": "salini",
-      "email": "salini@gmail.com",
-      "phone": "09807654231",
-      "city": "Krishnagiri",
-      "state": "TamilNadu",
-      "country": "India",
-      "id": 6
-    },
-    {
-      "fullName": "parani",
-      "email": "parani@gmail.com",
-      "phone": "09807654231",
-      "city": "bvbv",
-      "state": "cvbcv",
-      "country": "India",
-      "id": 7
     }
   ]
 }

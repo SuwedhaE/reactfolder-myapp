@@ -1,5 +1,5 @@
 import * as types from "./actionTypes";
-import { loadUsersSuccess, loadUsersError, createUserSuccess, createUserError, deleteUserSuccess, deleteUserError, updateUserSuccess, updateUserError, storeFormData, submitAddressInfo, storeCombinedFormValues, submitCombinedForm } from "./action";
+import { loadUsersSuccess, loadUsersError, createUserSuccess, createUserError, deleteUserSuccess, deleteUserError, updateUserError, submitAddressInfo, submitCombinedForm } from "./action";
 import { loadUsersApi, createUserApi, deleteUserApi, updateUserApi } from "./api";
 
 import { takeEvery, fork, all, call, put, delay, takeLatest, take } from "redux-saga/effects";
@@ -78,6 +78,7 @@ function* onSubmitBasicInfo(action) {
       const { basicInfo } = action.payload || {};
       console.log("onSubmitBasicInfo: ", basicInfo); 
     } catch (error) {
+      yield put(createUserError("Failed to update User"));
     }
   }
   

@@ -16,6 +16,7 @@ const EditInfo = () => {
     state: "",
     country: "",
   });
+  const [validationErrors, setValidationErrors] = useState({});
 
   useEffect(() => {
     const user = users.find((user) => user.id === parseInt(id));
@@ -31,6 +32,26 @@ const EditInfo = () => {
     }
   }, [users, id]);
 
+  const validateForm = () => {
+    const errors = {};
+
+    if (!/^[A-Za-z ]{3,16}$/.test(editedUser.fullName)) {
+      errors.fullName =
+        "Name should be 3-16 characters and should only contain letters and spaces!";
+    }
+
+    if (!/^\S+@\S+\.\S+$/.test(editedUser.email)) {
+      errors.email = "Please enter a valid email address!";
+    }
+
+    if (!/^\d{10}$/.test(editedUser.phone)) {
+      errors.phone = "Please enter a valid 10-digit phone number!";
+    }
+
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEditedUser((prevUser) => ({
@@ -39,15 +60,14 @@ const EditInfo = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    // debugger
-    console.log(id.editedUser);
-    dispatch(updateUserStart(id, editedUser));
-    // debugger
-    console.log(id.editedUser);
-    // debugger
-    alert("User Updated Successfully!!!");
-    navigate("/");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validateForm()) {
+      dispatch(updateUserStart(id, editedUser));
+      alert("User Updated Successfully!!!");
+      navigate("/");
+    }
   };
 
   return (
@@ -66,34 +86,55 @@ const EditInfo = () => {
                       <label className="form-label">Enter Name</label>
                       <input
                         type="text"
-                        className="form-control"
+                        className={`form-control ${
+                          validationErrors.fullName ? "is-invalid" : ""
+                        }`}
                         name="fullName"
                         required
                         value={editedUser.fullName}
                         onChange={handleChange}
                       />
+                      {validationErrors.fullName && (
+                        <div className="invalid-feedback">
+                          {validationErrors.fullName}
+                        </div>
+                      )}
                     </div>
                     <div className="mb-3">
                       <label className="form-label">Enter Email</label>
                       <input
                         type="text"
-                        className="form-control"
+                        className={`form-control ${
+                          validationErrors.email ? "is-invalid" : ""
+                        }`}
                         name="email"
                         required
                         value={editedUser.email || ""}
                         onChange={handleChange}
                       />
+                      {validationErrors.email && (
+                        <div className="invalid-feedback">
+                          {validationErrors.email}
+                        </div>
+                      )}
                     </div>
                     <div className="mb-3">
                       <label className="form-label">Enter Phone Number</label>
                       <input
                         type="number"
-                        className="form-control"
+                        className={`form-control ${
+                          validationErrors.phone ? "is-invalid" : ""
+                        }`}
                         name="phone"
                         required
                         value={editedUser.phone || ""}
                         onChange={handleChange}
                       />
+                      {validationErrors.phone && (
+                        <div className="invalid-feedback">
+                          {validationErrors.phone}
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="col-md-6">

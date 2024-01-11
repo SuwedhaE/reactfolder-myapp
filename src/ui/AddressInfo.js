@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { connect, useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { connect, useDispatch } from "react-redux";
 import {
   createAddressStart,
-  updateAddressStart,
-  submitAddressInfo,
-  updateUserStart,
+  submitAddressInfo
 } from "../redux/action";
 
 const AddressInfo = () => {
@@ -23,7 +21,7 @@ const AddressInfo = () => {
     if (city && state && country) {
       const addressInfo = { fullName, email, phone, city, state, country };
       const userId = id;
-      console.log("AddressInfo: ", addressInfo);
+      console.log("AddressInfo: ", userId, addressInfo);
       dispatch(createAddressStart(addressInfo));
       alert("User added Successfully !!!");
       // debugger
