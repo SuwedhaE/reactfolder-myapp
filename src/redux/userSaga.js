@@ -16,18 +16,6 @@ function* onLoadUsersStartAsync() {
     }
 }
 
-// function* onLoadAddressStartAsync({ payload }) {
-//     try{
-//         const response = yield call(loadUsersApi, payload);
-//         if(response.status === 200) {
-//             yield delay(500);
-//             yield put(loadUsersSuccess(response.data));
-//         }
-//     } catch(error) {
-//         yield put(loadUsersError(error.response.data));
-//     }
-// }
-
 function* onCreateUserStartAsync({payload}) {
     try{
         const response = yield call(createUserApi, payload);
@@ -61,18 +49,7 @@ function* onUpdateUserStartAsync(action) {
       yield put(updateUserError("Failed to update user"));
     }
   }
-  
-
-//   function* onUpdateUserSuccess(action) {
-//     try {
-//     //   const response = yield call(updateUserApi, action.payload.userId, action.payload.userInfo);
-//       yield put(updateUserSuccess(action.payload.userInfo));
-//     } catch (error) {
-//       // Handle errors
-//     }
-//   }
-
-
+ 
 function* onDeleteUser(){
     while(true) {
         const {payload : userId} = yield take(types.DELETE_USER_START);
@@ -83,10 +60,6 @@ function* onDeleteUser(){
 function* onLoadUsers() {
     yield takeEvery(types.LOAD_USERS_START, onLoadUsersStartAsync);
 }
-
-// function* onLoadAddress() {
-//     yield takeEvery(types.LOAD_USERS_START, onLoadAddressStartAsync);
-// }
 
 function* onCreateUser() {
     yield takeLatest(types.CREATE_USER_START, onCreateUserStartAsync);
@@ -103,9 +76,8 @@ function* onUpdateUser() {
 function* onSubmitBasicInfo(action) {
     try {
       const { basicInfo } = action.payload || {};
-      console.log("onSubmitBasicInfo: ", basicInfo); // Log for visibility
+      console.log("onSubmitBasicInfo: ", basicInfo); 
     } catch (error) {
-      // Implement error handling here
     }
   }
   
@@ -113,9 +85,7 @@ function* onSubmitBasicInfo(action) {
     try {
         const { addressInfo } = action.payload || {};
         console.log("onSubmitAddressInfo: ", addressInfo);
-        // yield put({ type: types.UPDATE_USER_START, payload: { id: userId, formValue: addressInfo } });
     } catch (error) {
-      // Implement error handling here
       yield put(updateUserError("Failed to update address")); // Example error action
     }
   }
@@ -129,27 +99,8 @@ function* onSubmitBasicInfo(action) {
         addressInfo,
       };
       yield put(submitCombinedForm(combinedFormData));
-    } catch (error) {
-      // Handle error if needed
-    }
+    } catch (error) {}
   }
-
-    // const { formData } = action.payload;
-    // yield put(storeFormData(formData));
-    // // yield takeLatest({type: 'SUBMIT_ADDRESS_INFO', payload: action.payload})
-
-// function* onCombinedFormSubmission(action){
-//     try {
-//         const { basicInfo, addressInfo } = action.payload || {};
-//         const combinedFormData = {
-//             basicInfo,
-//             addressInfo,
-//         };
-//         yield put(storeCombinedFormValues(combinedFormData));
-//     } catch (error) {
-//         // Handle error if needed
-//     }
-// }
 
 function* watchFormSubmissions() {
     yield takeLatest(types.SUBMIT_BASIC_INFO, onSubmitBasicInfo);

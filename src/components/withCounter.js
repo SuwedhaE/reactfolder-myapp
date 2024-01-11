@@ -10,11 +10,10 @@ const withCounter = (WrappedComponent) => {
       if (formData.type === 'basicInfo') {
         dispatch(submitBasicInfo(formData));
       } else {
-        // Assuming combined form submission here
-        dispatch(submitCombinedForm(formData)); // Dispatch the combined form action
+        dispatch(submitCombinedForm(formData)); 
       }
 
-      console.log("handleSubmit formData:", formData); // Use console.log for logging
+      console.log("handleSubmit formData:", formData); 
     };
 
     return <WrappedComponent onSubmit={handleSubmit} {...props} />;
